@@ -11,5 +11,6 @@ class Hello {
     Console.WriteLine(s.Pop()); // stack contains 1
     Console.WriteLine(s.Pop()); // stack is empty
     Console.WriteLine("Hello World");
+    TypeAndMember.ClassAndObject.ClassAndObject.main();
   }
 }

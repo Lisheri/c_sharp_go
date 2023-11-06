@@ -5,6 +5,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <!-- 声明C#版本, 最新的 dotnet-sdk(7.x) 可以使用preview声明最新的版本 -->
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
 </Project>
