@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
-
 class Hello {
   static void Main() {
     var s = new Acme.Collections.Stack<int>();
