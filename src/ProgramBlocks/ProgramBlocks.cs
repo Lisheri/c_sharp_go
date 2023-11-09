@@ -19,6 +19,7 @@ public class ProgramBlock {
     Console.WriteLine("x={0} y={2} z={1}", x, y, z);
     UseExpression.main();
     OtherFunctionMember.Entry.main();
+    OverloadingExample.useOverload();
     Console.WriteLine("------------------- 程序构建基块 -------------------");
   }
 }
@@ -189,3 +190,22 @@ class UseExpression() {
 }
 
 // 函数支持重载, 根据函数签名分发具体函数
+class OverloadingExample {
+  static void F() => Console.WriteLine("F()");
+  static void F(object x) => Console.WriteLine("F(object)"); // 重载
+  static void F(int x) => Console.WriteLine("F(int)");
+  static void F(double x) => Console.WriteLine("F(double)");
+  static void F<T>(T x) => Console.WriteLine($"F<T>(T), T is {typeof(T)}");
+  static void F(double x, double y) => Console.WriteLine($"F(double{x}, double{y})");
+
+  public static void useOverload() {
+    F();
+    F(1);
+    F(1.0);
+    F("abc");
+    F((double)1);
+    F((object)1);
+    F<int>(1);
+    F(1, 2);
+  }
+}
