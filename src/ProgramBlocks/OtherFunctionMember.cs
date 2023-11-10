@@ -82,10 +82,19 @@ class MyList<T> {
 
   public void Dispose() {
     Console.WriteLine("ok");
+    // 触发重写的 Dispose 虚方法
     Dispose(true);
     GC.SuppressFinalize(this);
   }
+
   protected virtual void Dispose(bool disposing) {
+    // 重载 Dispose 方法
+    // 指示方法调用是来自 Dispose方法(disposing: true)还是来自终结器(disposing: false)
+    // 也就是说确定情况下调用为true, 所谓主动释放
+    // + 可以释放如下对象:
+    //  - 实现IDisposable托管对象
+    //  - 占用大量内存或使用短缺资源的托管对象。将大型托管对象引用分配为null, 使其无法访问, 加快释放速度
+    // 不确定的情况下调用为false, 执行被动释放
     Console.WriteLine($"Dispose, {_disposed}");
     if (_disposed) {
       return;
@@ -105,6 +114,7 @@ class MyList<T> {
     // 析构函数
     // ? 不能主动触发, 只能被动触发
     Console.WriteLine("析构函数触发");
+    Dispose(false);
   }
 }
 
@@ -113,20 +123,21 @@ class EventExample {
 
   // 事件回调函数的 sender 其实就是Invoke的第一个参数, 这里的this代表的是 MyList<string> 实例, 第二个参数是 EventArgs.Empty 为空
   static void ListChanged(object sender, EventArgs e) {
-    Console.WriteLine("事件触发");
-    Console.WriteLine($"sender: {(sender as MyList<string>)[s_changeCount]!}, e: {e}");
     s_changeCount++;
   }
 
   public static void Usage() {
-    var names = new MyList<string>();
+    MyList<string> names = new MyList<string>();
     // 注册一个 Changed事件
     names.Changed += new EventHandler(ListChanged);
     names.Add("Liz");
     names.Add("Martha");
+    // 移除监听
+    names.Changed -= new EventHandler(ListChanged);
     names.Add("Beth");
-    Console.WriteLine(s_changeCount); // "3"
+    Console.WriteLine(s_changeCount); // "2"
     // 回收
     names.Dispose();
+    names = null;
   }
 }

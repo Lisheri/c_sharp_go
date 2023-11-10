@@ -13,5 +13,6 @@ class Hello {
     TypeAndMember.ClassAndObject.ClassAndObject.main();
     TypeAndMember.InterfaceAndEnum.InterfaceAndEnum.main();
     ProgramBlock.ProgramBlock.main();
+    MainLanguageArea.MainLanguageArea.Usage();
   }
 }

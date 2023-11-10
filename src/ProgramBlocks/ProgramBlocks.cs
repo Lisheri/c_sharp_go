@@ -19,7 +19,7 @@ public class ProgramBlock {
     Console.WriteLine("x={0} y={2} z={1}", x, y, z);
     UseExpression.main();
     OtherFunctionMember.Entry.main();
-    OverloadingExample.useOverload();
+    // OverloadingExample.useOverload();
     Console.WriteLine("------------------- 程序构建基块 -------------------");
   }
 }
