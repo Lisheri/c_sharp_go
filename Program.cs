@@ -1,4 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿namespace Program;
+// See https://aka.ms/new-console-template for more information
 using System;
 class Hello {
   static void Main() {

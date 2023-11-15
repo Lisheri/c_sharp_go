@@ -3,9 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace UseArray;
 
-public class Main() {
+public class Main {
 
-  public static async void Usage() {
+  public static async Task<int> Usage() {
     Console.WriteLine("C#数组");
     // 数组成员类型必须统一
     // 数组是引用类型, 声明数组只是为引用数组实例预留空间
@@ -21,7 +21,8 @@ public class Main() {
     multipartArray();
     autoSendLen();
     delegation();
-    await RetrieveDocsHomePage();
+    Solution.ThreeSumClosest([-1,2,1,-4], 1);
+    return await RetrieveDocsHomePage();
   }
 
   public static void multipartArray() {
@@ -59,6 +60,7 @@ public class Main() {
 
   public static async Task<int> RetrieveDocsHomePage() {
     var client = new HttpClient();
+    Console.WriteLine($"{nameof(RetrieveDocsHomePage)}: start downloading.");
     byte[] content = await client.GetByteArrayAsync("https://learn.microsoft.com/");
 
     Console.WriteLine($"{nameof(RetrieveDocsHomePage)}: Finished downloading.");
@@ -73,6 +75,10 @@ class Multiplier {
   double _factor;
   public Multiplier(double factor) => _factor = factor;
   public double Multiply(double x) => x * _factor;
+
+  static void Main() {
+    Console.WriteLine("避免Main冲突");
+  }
 }
 
 class DelegateExample {
@@ -98,4 +104,10 @@ class DelegateExample {
       Console.WriteLine($"{item}");
     }
   }
+}
+
+public class Solution {
+    public int ThreeSumClosest(int[] nums, int target) {
+
+    }
 }
